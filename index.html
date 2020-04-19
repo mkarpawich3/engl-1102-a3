@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .search {
+            width: 650px;
+            height: 30px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            margin: 30px 30px 20px 30px;
+            padding: 5px 25px;
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+        }
+
+        #search-query {
+            font-weight: 500;
+            font-size: 18px;
+            color: black;
+            margin: 0;
+        }
+
+        .search-icon {
+            width: 18px;
+            height: 18px;
+            margin-left: auto;
+        }
+
+        .result-count {
+            font-weight: 500;
+            margin-left: 60px;
+            margin-bottom: 60px;
+            color: gray;
+            font-size: 13px;
+        }
+
+        .search-result {
+            margin: 30px 60px;
+            overflow: hidden;
+        }
+
+        .search-result * {
+            font-weight: 500;
+            margin: 0 0 5px 0;
+        }
+
+        .search-result h1, .search-result h2 {
+            font-size: 14px;
+        }
+
+        .search-result h1 {
+            color: #444;
+        }
+
+        .search-result a {
+            color: #1A0DAB;
+            font-size: 20px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .search-result a:hover {
+            text-decoration: underline;
+        }
+
+        .search-result h2 {
+            color: #666;
+        }
+    </style>
+    <script>
+        var searchQuery = 'Oroonoko death'
+
+        var SearchResult = function(site, heading, snippet, url) {
+            this.site = site
+            this.heading = heading
+            this.snippet = snippet
+            this.url = url
+        }
+
+        var searchResults = [
+            new SearchResult(
+                'twitter.com / @johnbentley046',
+                'John Bentley on Twitter: "Immigrants shot Oroonoko..."',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'twitter'
+            ),
+            new SearchResult(
+                'surinamtimes.com / today',
+                'A man was murdered by Surinam immigrants on...',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing',
+                'news'
+            ),
+            new SearchResult(
+                'aphrabehn.me / blog',
+                'Oroonoko&apos;s suicide',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed',
+                'blog'
+            )
+        ];
+    </script>
+</head>
+<body>
+    <div class='search'>
+        <h1 id='search-query'></h1>
+        <img class='search-icon' src='images/search.svg' />
+    </div>
+    <h1 class='result-count'>3 results (in 0.87 seconds) </h1>
+    <div class='search-result' id='search-result-1'>
+        <h1></h1>
+        <a></a>
+        <h2></h2>
+    </div>
+    <div class='search-result' id='search-result-2'>
+        <h1></h1>
+        <a></a>
+        <h2></h2>
+    </div>
+    <div class='search-result' id='search-result-3'>
+        <h1></h1>
+        <a></a>
+        <h2></h2>
+    </div>
+    <script>
+        var $searchQuery = document.getElementById('search-query')
+
+        $searchQuery.innerHTML = searchQuery
+
+        for (var i = 0; i < searchResults.length; i++) {
+            var searchResult = searchResults[i]
+            var $searchResult = document.getElementById(`search-result-${i+1}`)
+
+            $searchResult.children[0].innerHTML = searchResult.site
+            $searchResult.children[1].innerHTML = searchResult.heading
+            $searchResult.children[1].href = searchResult.url
+            $searchResult.children[2].innerHTML = searchResult.snippet
+        }
+
+    </script>
+</body>
